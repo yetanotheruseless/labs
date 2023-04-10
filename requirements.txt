@@ -28,3 +28,6 @@ fastapi
 uvicorn
 python-multipart
 boto3
+bitsandbytes
+google-cloud-secret-manager
+google-colab

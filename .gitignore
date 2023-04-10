@@ -132,4 +132,7 @@ dmypy.json
 
 .idea/
 
-data/
+data/external
+data/interim
+data/raw
+data/processed
