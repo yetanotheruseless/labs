@@ -7,8 +7,8 @@ app = FastAPI()
 
 # Replace with your AWS S3 credentials
 s3 = boto3.client('s3',
-                  aws_access_key_id='AKIA5XABEZG74WZ7DVWP',
-                  aws_secret_access_key='jEUhUdXJuY4iN0xTgmr95OxPbgL1s+uonTo8BIac')
+                  aws_access_key_id='INSERT_HERE',
+                  aws_secret_access_key='ALSO_THIS_ONE')
 
 BUCKET_NAME = 'your-bucket-name'
 BASE_URL = 'https://yourdomain.com'
