@@ -31,3 +31,6 @@ boto3
 bitsandbytes
 google-cloud-secret-manager
 google-colab
+datasets
+accelerate
+loralib
