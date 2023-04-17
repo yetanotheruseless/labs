@@ -1,5 +1,6 @@
 from character import *
 
+
 class Distance(Enum):
     IMMEDIATE = auto()
     SHORT = auto()
@@ -15,35 +16,26 @@ class Laws(Enum):
     SUBSTANDARD_PHYSICS = auto()
     EXOTIC = auto()
 
-WorldAttributes = namedtuple('WorldAttributes',
-                             ['name', 'description', 'level', 'laws', 'foci', 'playable_races', 'skills',
-                              'size', 'spark_percentage', 'connection_to_earth', 'connection_to_strange',
-                              'connection_to_recursions', 'traits', 'arrival_location', 'is_prime', 'facts_players_know',
-                              'facts_players_may_learn'])
 
-
-class World(Enum):
-    EARTH = WorldAttributes(name='Earth', description='The world you know and love.',
-                            level=5, laws=[Laws.STANDARD_PHYSICS],
-                            foci=[Focus.CONDUCTS_WEIRD_SCIENCE, Focus.ENTERTAINS, Focus.IS_LICENSED_TO_CARRY,
-                                  Focus.LEADS, Focus.LOOKS_FOR_TROUBLE, Focus.OPERATES_UNDERCOVER,
-                                  Focus.SOLVES_MYSTERIES, Focus.WORKS_THE_SYSTEM],
-                            playable_races=['Human'], skills=[], size=0, spark_percentage=100,
-                            connection_to_earth="is Earth", connection_to_strange="No direct connection",
-                            connection_to_recursions="various gates", traits=[],
-                            arrival_location="Seattle Space Needle, among the crowds", facts_players_know=[],
-                            facts_players_may_learn=[], is_prime=True)
-    ATLANTIS = WorldAttributes(name='Atlantis', description='The lost city of Atlantis.', level=6,
-                               laws=[Laws.MAGIC, Laws.MAD_SCIENCE], playable_races=['Human', 'Atlantean'],
-                               skills=['Atlantis lore'], size=20000, spark_percentage=20,
-                               #foci=[Focus.ADAPTS_TO_ANY_ENVIRONMENT, Focus.CONDUCTS_WEIRD_SCIENCE, Focus.ENTERTAINS,
-                               #      Focus.INTEGRATES_WEAPONRY, Focus.LEADS, Focus.OPERATES_UNDERCOVER,
-                               #      Focus.PROCESSES_INFORMATION, Focus.PRACTICES_SOUL_SORCERY, Focus.REGENERATES_TISSUE,
-                               #      Focus.WIELDS_TWO_WEAPONS_AT_ONCE, Focus.WORKS_MIRACLES]), skills=['Atlantis lore'],
-                              connection_to_earth="at least one gate in the heart of the island",
-                              connection_to_strange="deep deep underwater", connection_to_recursions="various gates")
-    RUK = WorldAttributes(name='Ruk', description='The world of Ruk.', level=4, laws=[Laws.MAD_SCIENCE],
-                          foci=[Focus.ADAPTS_TO_ANY_ENVIRONMENT, Focus.INFILTRATES])
+@dataclass
+class World:
+    name: str
+    description: str
+    level: int
+    laws: List[Laws]
+    foci: List[Focus]
+    playable_races: List[str]
+    skills: List[str]
+    size_sq_miles: int
+    spark_percentage: int
+    connection_to_earth: str
+    connection_to_strange: str
+    connection_to_recursions: str
+    traits: List[str]
+    arrival_location: str
+    is_prime: bool
+    facts_players_know: List[str]
+    facts_players_may_learn: List[str]
 
 
 @dataclass

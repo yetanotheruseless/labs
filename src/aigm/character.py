@@ -22,7 +22,8 @@ class Stat(Enum):
 DescriptorAttributes = namedtuple("DescriptorAttributes", ["skills", "attribute_bonuses", "inabilities", "description"])
 
 
-class Descriptor(Enum):
+@dataclass
+class Descriptor:
     name: str
     skills: List[str]
     inabilities: List[str]
@@ -46,7 +47,8 @@ class FocusAttributes:
     tiered_abilities: List[List[FocusAbility]]
 
 
-class Focus(Enum):
+@dataclass
+class Focus:
     name: str
     description: str
     equipment: List[str]
