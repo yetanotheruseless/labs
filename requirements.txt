@@ -17,7 +17,7 @@ transformers
 peft
 huggingface-hub
 jupyter
-memorizing-transformers-pytorch
+# memorizing-transformers-pytorch
 
 pdfplumber
 PyPDF2
@@ -30,7 +30,7 @@ python-multipart
 boto3
 bitsandbytes
 google-cloud-secret-manager
-google-colab
 datasets
 accelerate
 loralib
+pymupdf

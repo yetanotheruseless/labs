@@ -71,12 +71,12 @@ def narrate_translation(characters: List[Character], world: World, gate_type: Ga
 
 def narrate_start_of_encounter(characters: List[Character], world: World, creatures: List[Creature]):
     char_names = [char.name for char in characters]
-    char_descriptors = [char.descriptor.name.lower() for char in characters]
+    char_descriptors = [char.descriptor.name for char in characters]
     char_types = [char.character_type.name.lower() for char in characters]
-    char_foci = [char.focus.name.lower().replace('_', ' ') for char in characters]
+    char_foci = [char.focus.name for char in characters]
 
-    world_name = world.value.name
-    world_description = world.value.description
+    world_name = world.name
+    world_description = world.description
 
     creature_names = [creature.name for creature in creatures]
     creature_descriptions = [creature.description for creature in creatures]
