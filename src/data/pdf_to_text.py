@@ -69,7 +69,32 @@ def extract_bold_and_italic(spans: List[TextSpan]):
     return [span for span in spans if span.bold or span.italic]
 
 
-def concat_raw_text(spans: List[TextSpan]):
-    return " ".join([span.text for span in spans])
+def concat_raw_text(span_list: List[TextSpan]) -> List[str]:
+    return [span.text for span in span_list]
 
 
+if __name__ == "__main__":
+    import sys
+
+    if len(sys.argv) < 2:
+        print("Usage: python pdf_to_text.py <pdf_path>")
+        sys.exit(1)
+
+    pdf_path = sys.argv[1]
+    out_prefix = pdf_path.replace(".pdf", "")
+    out_text_path = out_prefix + ".txt"
+    out_footnotes_path = out_prefix + "_footnotes.txt"
+
+    all_spans = extract_text_blocks(pdf_path)
+    bold_italic_spans = extract_bold_and_italic(all_spans)
+    all_spans = drop_footnotes(all_spans)
+    body_text: List[str] = concat_raw_text(all_spans)
+    bold_italic_text: List[str] = concat_raw_text(bold_italic_spans)
+
+    with open(out_text_path, "w") as f:
+        for line in body_text:
+            f.write(line + "\n")
+
+    with open(out_footnotes_path, "w") as f:
+        for line in bold_italic_text:
+            f.write(line + "\n")
