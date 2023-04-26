@@ -45,8 +45,8 @@ class TextBlock:
 
 
 def group_text_spans_by_block(text_spans: List[TextSpan]) -> List[TextSpan]:
-    # First, sort the list by block_num and line_num
-    text_spans.sort(key=lambda x: (x.block_num, x.line_num))
+    # First, sort the list by page_num, block_num and line_num
+    text_spans.sort(key=lambda x: (x.page_num, x.block_num, x.line_num))
     grouped_text_spans = []
     current_span = None
     current_block_num = None
@@ -57,7 +57,7 @@ def group_text_spans_by_block(text_spans: List[TextSpan]) -> List[TextSpan]:
             current_block_num = span.block_num
             current_text = span.text
         elif current_block_num == span.block_num:
-            current_text += (" " + span.text)
+            current_text += (" \n" + span.text)
         else:
             new_span = copy.deepcopy(span)
             new_span.text = current_text
@@ -111,8 +111,8 @@ def flags_decomposer(flags) -> TextSpan:
     return font_flags
 
 
-def extract_text_blocks(pdf_path):
-    doc = fitz.open(pdf_path)
+def extract_text_blocks(file_path) -> List[TextSpan]:
+    doc = fitz.open(file_path)
     spans = []
     for i, page in enumerate(doc):
         blocks = page.get_text("dict", flags=11)["blocks"]
@@ -141,7 +141,7 @@ def extract_bold_and_italic(spans: List[TextSpan]):
 
 
 def concat_raw_text(span_list: List[TextSpan]) -> List[str]:
-    return [span.text for span in span_list]
+    return [span.text + " \n" for span in span_list]
 
 
 if __name__ == "__main__":
@@ -167,7 +167,7 @@ if __name__ == "__main__":
 
         all_spans = extract_text_blocks(pdf_path)
         bold_italic_spans = extract_bold_and_italic(all_spans)
-        all_spans = drop_footnotes(all_spans)
+        all_spans = group_text_spans_by_block(drop_footnotes(all_spans))
         body_text: List[str] = concat_raw_text(all_spans)
         bold_italic_text: List[str] = concat_raw_text(bold_italic_spans)
 

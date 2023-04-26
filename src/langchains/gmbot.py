@@ -96,5 +96,5 @@ def create_qa_chain(openai_api_key, pinecone_api_key, pinecone_env, pinecone_ind
 # keys = get_keys()
 # qa = create_qa_chain(openai_api_key=keys.openai_api_key, pinecone_api_key=keys.pinecone_api_key,
 #        pinecone_env='us-east4-gcp', pinecone_index_name='game-tmp', llm_model_name='text-davinci-003',
-#        data_uri='s3://yetanotheruseless-data/projects/AI-RPG/interim/clean_text/footnotes/')
+#        data_uri='s3://yetanotheruseless-data/projects/AI-RPG/interim/clean_text/body/')
 #
