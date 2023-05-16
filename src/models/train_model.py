@@ -32,7 +32,7 @@ def get_model_and_tokenizer(model_name="facebook/opt-6.7b", torch_dtype=torch.fl
         model_name,
         load_in_8bit=True,
         device_map='auto',
-    ).to(device)
+    )
     model = model.half() if torch_dtype == torch.float16 else model
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     for param in model.parameters():
